@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Env (секрети)
+.env
+
+# Logs
+*.log
+
+# Django
+staticfiles/
+media/
+
+# Docker volumes
+postgres_data/
+redis_data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
