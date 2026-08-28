@@ -17,6 +17,18 @@ media/
 # Docker volumes
 postgres_data/
 redis_data/
+*.pid
+*.sock
+
+# Databases
+*.sqlite3
+celerybeat-schedule
+
+# Tests
+*.coverage
+.coverage
+htmlcov/
+.pytest_cache/
 
 # IDE
 .vscode/
