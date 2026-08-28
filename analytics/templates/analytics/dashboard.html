@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">📊 Product Dashboard</h1>
+
+  <!-- Summary cards -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Winners (SCALE)</h5>
+          <p class="card-text fs-4">{{ summary.scale }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-dark bg-warning mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Testing</h5>
+          <p class="card-text fs-4">{{ summary.test }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-danger mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Kill list</h5>
+          <p class="card-text fs-4">{{ summary.kill }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products table -->
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Product</th>
+        <th>CTR (%)</th>
+        <th>Clicks</th>
+        <th>Decision</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in products %}
+      <tr>
+        <td>{{ p.title }}</td>
+        <td>{{ p.ctr }}</td>
+        <td>{{ p.clicks }}</td>
+        <td>
+          {% if p.decision == "SCALE" %}
+            <span class="badge bg-success">SCALE</span>
+          {% elif p.decision == "TEST" %}
+            <span class="badge bg-warning text-dark">TEST</span>
+          {% else %}
+            <span class="badge bg-danger">KILL</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

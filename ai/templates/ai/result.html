@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Результати для: {{ title }}</h2>
+
+  <p><strong>Опис:</strong> {{ description }}</p>
+  <p><strong>Хук:</strong> {{ hook }}</p>
+  <p><strong>Хештеги:</strong> {{ hashtags }}</p>
+
+  <a href="{% url 'ai:ai_generate' %}">Спробувати ще</a>
+{% endblock %}

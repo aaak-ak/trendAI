@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Список трендів</h2>
+  <ul>
+    {% for trend in trends %}
+      <li>{{ trend.name }} ({{ trend.source }}) — популярність: {{ trend.popularity }}</li>
+    {% empty %}
+      <li>Трендів ще немає.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
