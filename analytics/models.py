@@ -6,7 +6,7 @@ class Analytics(models.Model):
     views = models.PositiveIntegerField(default=0)
     clicks = models.PositiveIntegerField(default=0)
     conversions = models.PositiveIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     
     @property
     def ctr(self):
