@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # твої додатки
+    'config.apps.ConfigConfig',
     'product_engine.apps.ProductEngineConfig',
     'campaigns.apps.CampaignsConfig',
     'rest_framework',
