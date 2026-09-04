@@ -16,4 +16,5 @@ class ConfigConfig(AppConfig):
     name = "config"
 
     def ready(self):
-        post_migrate.connect(create_admin, sender=self)
+        #post_migrate.connect(create_admin, sender=self)
+        pass

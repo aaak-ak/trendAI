@@ -12,8 +12,8 @@ def create_admin(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ai', '0002_trend'),  # заміни на назву останньої міграції у твоєму додатку ai
-    ]
+    ('ai', '0002_alter_content_options_content_trend_and_more'),
+]
 
     operations = [
         migrations.RunPython(create_admin),
