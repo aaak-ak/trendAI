@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-key")
 DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
 
 # ALLOWED_HOSTS
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'trendai-web.onrender.com']
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -71,7 +71,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database (універсальна конфігурація)
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL")
+    )
 }
 
 # Password validation
