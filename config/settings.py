@@ -14,9 +14,22 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-key")
 # Debug режим
 DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
 
-# ALLOWED_HOSTS
-DEBUG = os.getenv("DEBUG", "False") == "True"
+# Дозволені хости
+ALLOWED_HOSTS = [
+    'web-production-1ee3e7.up.railway.app',
+    '.railway.app',
+    'localhost',
+    '127.0.0.1',
+]
 
+# Довіряти Railway-проксі
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# CSRF Trusted Origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-1ee3e7.up.railway.app',
+    'https://*.railway.app',
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -29,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # твої додатки
-    'config.apps.ConfigConfig',
     'product_engine.apps.ProductEngineConfig',
     'campaigns.apps.CampaignsConfig',
     'rest_framework',
@@ -69,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database (універсальна конфігурація)
+# Database
 DATABASES = {
     "default": dj_database_url.config(
         default=os.getenv("DATABASE_URL")
@@ -93,5 +105,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
