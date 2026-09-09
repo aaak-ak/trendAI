@@ -9,6 +9,7 @@ class AnalyticsViewSet(viewsets.ModelViewSet):
     queryset = Analytics.objects.all()
     serializer_class = AnalyticsSerializer
 
+
 def dashboard(request):
     # Отримуємо всі продукти
     products = Product.objects.all()

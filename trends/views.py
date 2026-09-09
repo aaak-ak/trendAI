@@ -1,7 +1,20 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from trends.forms import TrendForm
-from trends.models import Trend
+from trends.models import Trend, TrendCandidate
+from rest_framework import viewsets
+from .serializers import TrendSerializer, TrendCandidateSerializer
 
+# API ViewSets
+class TrendViewSet(viewsets.ModelViewSet):
+    queryset = Trend.objects.all()
+    serializer_class = TrendSerializer
+
+class TrendCandidateViewSet(viewsets.ModelViewSet):
+    queryset = TrendCandidate.objects.all()
+    serializer_class = TrendCandidateSerializer
+
+
+# Function-based views (для форм і HTML)
 def add_trend(request):
     """
     View для додавання нового тренду вручну.
@@ -23,6 +36,4 @@ def trend_list(request):
     """
     trends = Trend.objects.all().order_by("-created_at")
     return render(request, "trends/list_trends.html", {"trends": trends})
-from django.shortcuts import render
 
-# Create your views here.

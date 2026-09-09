@@ -6,27 +6,28 @@ from django.http import JsonResponse
 from product_engine.views import home, ProductViewSet
 from rest_framework import routers
 from analytics.views import AnalyticsViewSet
-from trends.views import TrendViewSet
+from trends.views import TrendViewSet, TrendCandidateViewSet
 
-
-router = routers.DefaultRouter()
-router.register(r'product_engine', ProductViewSet)
-router.register(r'analytics', AnalyticsViewSet)
-router.register(r'trends', TrendViewSet)
-
-
+# Health check endpoint
 def health_check(request):
     return JsonResponse({"status": "ok"})
 
+# Router для DRF
+router = routers.DefaultRouter()
+router.register(r'products', ProductViewSet)          # краще products, ніж product_engine
+router.register(r'analytics', AnalyticsViewSet)
+router.register(r'trends', TrendViewSet)
+router.register(r'trend_candidates', TrendCandidateViewSet)
+
 urlpatterns = [
-    path("", home, name="home"),   # головна сторінка
-    path("ping/", health_check),   # health endpoint
-    path("admin/", admin.site.urls),
-    path("ai/", include(("ai.urls", "ai"), namespace="ai")),  # правильний синтаксис для namespace
-    path("", include("product_engine.urls")),
-    path("analytics/", include("analytics.urls")),
-    path("traffic/", include("traffic.urls")),
-    path("api/", include(router.urls)),   # API маршрути
+    path("", home, name="home"),                       # головна сторінка
+    path("ping/", health_check),                       # health endpoint
+    path("admin/", admin.site.urls),                   # адмінка
+    path("ai/", include(("ai.urls", "ai"), namespace="ai")),  # AI namespace
+    path("product_engine/", include("product_engine.urls")),  # маршрути продуктів
+    path("analytics/", include("analytics.urls")),     # маршрути аналітики
+    path("traffic/", include("traffic.urls")),         # маршрути трафіку
+    path("api/", include(router.urls)),                # API маршрути
 ]
 
 if settings.DEBUG:

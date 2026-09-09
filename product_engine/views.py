@@ -1,6 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product
 from analytics.models import Analytics
+from rest_framework import viewsets
+from .serializers import ProductSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
