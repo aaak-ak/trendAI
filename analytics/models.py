@@ -1,12 +1,18 @@
 from django.db import models
+from django.utils import timezone
 from product_engine.models import Product
 
+
 class Analytics(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="analytics")
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="analytics"
+    )
     views = models.PositiveIntegerField(default=0)
     clicks = models.PositiveIntegerField(default=0)
     conversions = models.PositiveIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)  # ✅ дефолт для міграцій
 
     @property
     def ctr(self):
