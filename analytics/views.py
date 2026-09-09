@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from product_engine.models import Product
 from analytics.scoring import score
-from django.shortcuts import get_object_or_404, redirect
-from .models import Click
+from .models import Click, Analytics
+from .serializers import AnalyticsSerializer
+from rest_framework import viewsets
+
+class AnalyticsViewSet(viewsets.ModelViewSet):
+    queryset = Analytics.objects.all()
+    serializer_class = AnalyticsSerializer
 
 def dashboard(request):
     # Отримуємо всі продукти
@@ -38,3 +43,4 @@ def track_click(request, pk):
     click.save()
     # Перенаправити користувача на збережений URL
     return redirect(click.url)
+

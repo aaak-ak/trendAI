@@ -5,9 +5,15 @@ from django.conf.urls.static import static
 from django.http import JsonResponse
 from product_engine.views import home, ProductViewSet
 from rest_framework import routers
+from analytics.views import AnalyticsViewSet
+from trends.views import TrendViewSet
+
 
 router = routers.DefaultRouter()
-router.register(r'products', ProductViewSet)
+router.register(r'product_engine', ProductViewSet)
+router.register(r'analytics', AnalyticsViewSet)
+router.register(r'trends', TrendViewSet)
+
 
 def health_check(request):
     return JsonResponse({"status": "ok"})
