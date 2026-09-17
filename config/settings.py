@@ -5,12 +5,13 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Явно вказуємо шлях до .env
+# Завантаження .env
 load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
+# Безпека
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-key")
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",") if host]
 
 # Довіряти Railway-проксі
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -25,16 +26,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Application definition
 INSTALLED_APPS = [
+    # Django core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # твої додатки
-    'product_engine.apps.ProductEngineConfig',
-    'campaigns.apps.CampaignsConfig',
+
+    # Third-party
     'rest_framework',
+    'django_extensions',
+
+    # Your apps
+    'product_engine',
+    'campaigns',
     'ai',
     'analytics',
     'traffic',
@@ -57,10 +63,11 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / "templates"],  # глобальні шаблони
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -86,14 +93,29 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# підтримка багатьох мов
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'Deutsch'),
+    ('uk', 'Українська'),
+    ('fr', 'Français'),
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    ('ja', '日本語'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
 # Static & Media files
-STATIC_URL = 'static/'
-MEDIA_URL = "/media/"
-MEDIA_ROOT = MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

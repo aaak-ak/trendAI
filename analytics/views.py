@@ -17,10 +17,17 @@ def dashboard(request):
     # Формуємо список даних для шаблону
     data = []
     for p in products:
+        # беремо перший об'єкт аналітики для продукту (або None)
+        analytics = p.analytics.first()
+
+        # обчислюємо CTR на льоту (clicks/views * 100)
+        ctr = (analytics.clicks / analytics.views * 100) if analytics and analytics.views > 0 else 0
+        clicks = analytics.clicks if analytics else 0
+
         data.append({
             "title": p.title,
-            "ctr": p.analytics.ctr if hasattr(p, "analytics") else 0,
-            "clicks": p.analytics.clicks if hasattr(p, "analytics") else 0,
+            "ctr": ctr,
+            "clicks": clicks,
             "decision": score(p)
         })
 
@@ -36,6 +43,7 @@ def dashboard(request):
         "products": data,
         "summary": summary
     })
+
 
 def track_click(request, pk):
     click = get_object_or_404(Click, pk=pk)

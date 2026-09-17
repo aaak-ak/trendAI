@@ -14,7 +14,7 @@ def health_check(request):
 
 # Router для DRF
 router = routers.DefaultRouter()
-router.register(r'product_engine', ProductViewSet)          # краще products, ніж product_engine
+router.register(r'products', ProductViewSet)          # зрозуміліше ніж product_engine
 router.register(r'analytics', AnalyticsViewSet)
 router.register(r'trends', TrendViewSet)
 router.register(r'trend_candidates', TrendCandidateViewSet)
@@ -27,8 +27,7 @@ urlpatterns = [
     path("product_engine/", include("product_engine.urls")),  # маршрути продуктів
     path("analytics/", include("analytics.urls")),     # маршрути аналітики
     path("traffic/", include("traffic.urls")),         # маршрути трафіку
-    path("api/", include(router.urls)),
-    path("api/", include(router.urls)),                                # API маршрути
+    path("api/", include(router.urls)),                # API маршрути
 ]
 
 if settings.DEBUG:

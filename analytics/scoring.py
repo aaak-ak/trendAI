@@ -1,5 +1,5 @@
 from product_engine.models import Product   # модель продукту
-from analytics.models import Analytics      # модель аналітики (views, clicks, ctr)
+from analytics.models import Analytics      # модель аналітики (views, clicks)
 
 def score(product: Product) -> str:
     """
@@ -7,10 +7,19 @@ def score(product: Product) -> str:
     Повертає рішення: SCALE / TEST / KILL
     """
 
-    # отримуємо дані з пов'язаних моделей
-    ctr = product.analytics.ctr if hasattr(product, "analytics") else 0
+    # отримуємо перший об'єкт аналітики для продукту
+    analytics = product.analytics.first()
+
+    # обчислюємо CTR (clicks/views * 100), якщо є дані
+    if analytics and analytics.views > 0:
+        ctr = analytics.clicks / analytics.views * 100
+        clicks = analytics.clicks
+    else:
+        ctr = 0
+        clicks = 0
+
+    # трендовий бал (якщо є поле у моделі Product)
     trend = getattr(product, "trend_score", 0)
-    clicks = product.analytics.clicks if hasattr(product, "analytics") else 0
 
     # формула з вагами
     score_value = ctr * 0.4 + trend * 0.4 + clicks * 0.2
@@ -21,3 +30,4 @@ def score(product: Product) -> str:
         return "TEST"
     else:
         return "KILL"
+
