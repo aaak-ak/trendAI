@@ -20,7 +20,7 @@ class Product(models.Model):
     )
     asin = models.CharField(max_length=20, blank=True, null=True)       # Amazon ASIN
     product_id = models.CharField(max_length=50, blank=True, null=True) # AliExpress/eBay/Etsy ID
-    affiliate_link = models.URLField(blank=True, null=True)             # партнерське посилання
+    affiliate_link = models.CharField(max_length=500, blank=True, null=True)             # партнерське посилання
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     likes = models.PositiveIntegerField(default=0)
 

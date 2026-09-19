@@ -14,17 +14,17 @@ def health_check(request):
 
 # Router для DRF
 router = routers.DefaultRouter()
-router.register(r'products', ProductViewSet)          # зрозуміліше ніж product_engine
+router.register(r'products', ProductViewSet)          # API: /api/products/
 router.register(r'analytics', AnalyticsViewSet)
 router.register(r'trends', TrendViewSet)
 router.register(r'trend_candidates', TrendCandidateViewSet)
 
 urlpatterns = [
     path("", home, name="home"),                       # головна сторінка
+    path("products/", include("product_engine.urls")), # каталог продуктів
     path("ping/", health_check),                       # health endpoint
     path("admin/", admin.site.urls),                   # адмінка
     path("ai/", include(("ai.urls", "ai"), namespace="ai")),  # AI namespace
-    path("product_engine/", include("product_engine.urls")),  # маршрути продуктів
     path("analytics/", include("analytics.urls")),     # маршрути аналітики
     path("traffic/", include("traffic.urls")),         # маршрути трафіку
     path("api/", include(router.urls)),                # API маршрути
