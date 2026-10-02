@@ -6,6 +6,7 @@ __pycache__/
 
 # Env (секрети)
 .env
+venv/
 
 # Logs
 *.log
