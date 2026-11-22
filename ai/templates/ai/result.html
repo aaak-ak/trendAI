@@ -1,10 +1,75 @@
-{% extends "base.html" %}
+{% extends "product_engine/base.html" %}
+
+{% block title %}
+AI Result
+{% endblock %}
+
 {% block content %}
-  <h2>Результати для: {{ title }}</h2>
 
-  <p><strong>Опис:</strong> {{ description }}</p>
-  <p><strong>Хук:</strong> {{ hook }}</p>
-  <p><strong>Хештеги:</strong> {{ hashtags }}</p>
+<div class="card-ai">
 
-  <a href="{% url 'ai:ai_generate' %}">Спробувати ще</a>
+    <h1>
+        🤖 AI Results
+    </h1>
+
+    <p class="text-secondary">
+
+        Generated content for:
+
+        <strong>
+            {{ title }}
+        </strong>
+
+    </p>
+
+</div>
+
+<div class="card-ai">
+
+    <h3>
+        📝 Product Description
+    </h3>
+
+    <p>
+        {{ description }}
+    </p>
+
+</div>
+
+<div class="card-ai">
+
+    <h3>
+        ⚡ Viral Hook
+    </h3>
+
+    <p>
+        {{ hook }}
+    </p>
+
+</div>
+
+<div class="card-ai">
+
+    <h3>
+        🏷️ Hashtags
+    </h3>
+
+    <p>
+        {{ hashtags }}
+    </p>
+
+</div>
+
+<div class="card-ai">
+
+    <a
+        href="{% url 'ai:ai_generate' %}"
+        class="btn-trend">
+
+        Generate Again
+
+    </a>
+
+</div>
+
 {% endblock %}

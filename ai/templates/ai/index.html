@@ -1,4 +1,142 @@
-<h1>AI головна сторінка</h1>
-<p>Ласкаво просимо до AI‑модуля!</p>
-<a href="{% url 'ai:ai_generate' %}">Перейти до генерації</a>
+{% extends "product_engine/base.html" %}
 
+{% block title %}
+AI Studio
+{% endblock %}
+
+{% block content %}
+
+<div class="card-ai">
+
+    <span style="
+    border:1px solid #84cc16;
+    padding:10px 18px;
+    border-radius:18px;
+    color:#84cc16;">
+        🤖 TrendAI Studio
+    </span>
+
+    <h1 style="
+    margin-top:25px;
+    font-size:64px;
+    font-weight:900;">
+        Create Content<br>
+        With AI
+    </h1>
+
+    <p style="
+    color:#cbd5e1;
+    font-size:20px;
+    max-width:800px;">
+        Generate TikTok scripts, affiliate content,
+        hooks, captions and product descriptions
+        using AI.
+    </p>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-3">
+
+        <div class="card-ai text-center">
+
+            <div class="hero-icon">
+                🎬
+            </div>
+
+            <h4 class="mt-3">
+                TikTok Scripts
+            </h4>
+
+            <p class="text-secondary">
+                Generate viral scripts
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card-ai text-center">
+
+            <div class="hero-icon">
+                ⚡
+            </div>
+
+            <h4 class="mt-3">
+                Hooks
+            </h4>
+
+            <p class="text-secondary">
+                Create attention grabbers
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card-ai text-center">
+
+            <div class="hero-icon">
+                ✍️
+            </div>
+
+            <h4 class="mt-3">
+                Captions
+            </h4>
+
+            <p class="text-secondary">
+                Generate social captions
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card-ai text-center">
+
+            <div class="hero-icon">
+                🏷️
+            </div>
+
+            <h4 class="mt-3">
+                Hashtags
+            </h4>
+
+            <p class="text-secondary">
+                Generate hashtags
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card-ai mt-4">
+
+    <h3>
+        🤖 AI Generator
+    </h3>
+
+    <p class="text-secondary">
+        Open generator and create content.
+    </p>
+
+    <a
+        href="{% url 'ai:ai_generate' %}"
+        class="btn-trend">
+
+        Open AI Generator
+
+    </a>
+
+</div>
+
+{% endblock %}

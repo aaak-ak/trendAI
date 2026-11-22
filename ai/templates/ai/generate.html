@@ -1,12 +1,58 @@
-{% extends "base.html" %}
+{% extends "product_engine/base.html" %}
+
+{% block title %}
+AI Generator
+{% endblock %}
+
 {% block content %}
-  <h2>AI генерація тексту</h2>
-  <form method="post">
-    {% csrf_token %}
-    <div>
-      <label for="title">Назва товару:</label>
-      <input type="text" id="title" name="title" required>
-    </div>
-    <button type="submit">Згенерувати</button>
-  </form>
+
+<div class="card-ai">
+
+    <h1 style="
+    font-size:56px;
+    font-weight:900;">
+        🤖 AI Content Generator
+    </h1>
+
+    <p class="text-secondary">
+
+        Generate descriptions, hooks, hashtags
+        and product content automatically.
+
+    </p>
+
+</div>
+
+<div class="card-ai">
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <label class="mb-3">
+
+            Product Name
+
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            class="form-control"
+            placeholder="Wireless Earbuds"
+            required>
+
+        <button
+            type="submit"
+            class="btn-trend mt-4">
+
+            Generate Content
+
+        </button>
+
+    </form>
+
+</div>
+
 {% endblock %}

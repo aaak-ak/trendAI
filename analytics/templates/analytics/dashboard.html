@@ -1,65 +1,195 @@
 {% extends "product_engine/base.html" %}
 
+{% block title %}
+Analytics
+{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-  <h1 class="mb-4">📊 Product Dashboard</h1>
 
-  <!-- Summary cards -->
-  <div class="row mb-4">
-    <div class="col">
-      <div class="card text-white bg-success mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Winners (SCALE)</h5>
-          <p class="card-text fs-4">{{ summary.scale }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-dark bg-warning mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Testing</h5>
-          <p class="card-text fs-4">{{ summary.test }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-white bg-danger mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Kill list</h5>
-          <p class="card-text fs-4">{{ summary.kill }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card-ai">
 
-  <!-- Products table -->
-  <table class="table table-bordered table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Product</th>
-        <th>CTR (%)</th>
-        <th>Clicks</th>
-        <th>Decision</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for p in products %}
-      <tr>
-        <td>{{ p.title }}</td>
-        <td>{{ p.ctr }}</td>
-        <td>{{ p.clicks }}</td>
-        <td>
-          {% if p.decision == "SCALE" %}
-            <span class="badge bg-success">SCALE</span>
-          {% elif p.decision == "TEST" %}
-            <span class="badge bg-warning text-dark">TEST</span>
-          {% else %}
-            <span class="badge bg-danger">KILL</span>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <h1 style="
+    font-size:52px;
+    font-weight:800;">
+        📈 Analytics Center
+    </h1>
+
+    <p style="color:#cbd5e1;">
+        Analyze products. Scale winners. Kill losers.
+    </p>
+
 </div>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card-ai">
+
+            <small>🚀 Winners</small>
+
+            <div class="metric">
+                {{ summary.scale }}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card-ai">
+
+            <small>🧪 Testing</small>
+
+            <div class="metric">
+                {{ summary.test }}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card-ai">
+
+            <small>❌ Kill List</small>
+
+            <div class="metric">
+                {{ summary.kill }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-8">
+
+        <div class="card-ai">
+
+            <h3>
+                🔥 Product Performance
+            </h3>
+
+            <table class="table mt-4">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>CTR</th>
+
+                        <th>Clicks</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for p in products %}
+
+                    <tr>
+
+                        <td>
+                            {{ p.title }}
+                        </td>
+
+                        <td>
+                            {{ p.ctr }}%
+                        </td>
+
+                        <td>
+                            {{ p.clicks }}
+                        </td>
+
+                        <td>
+
+                            {% if p.decision == "SCALE" %}
+
+                            <span class="badge bg-success">
+                                🚀 SCALE
+                            </span>
+
+                            {% elif p.decision == "TEST" %}
+
+                            <span class="badge bg-warning text-dark">
+                                🧪 TEST
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+                                ❌ KILL
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card-ai">
+
+            <h4>
+                🤖 AI Recommendation
+            </h4>
+
+            <hr>
+
+            <p>
+                Analyze products with CTR above 5%.
+            </p>
+
+            <p>
+                Scale products with consistent click growth.
+            </p>
+
+            <p>
+                Remove low-performing products.
+            </p>
+
+        </div>
+
+        <div class="card-ai">
+
+            <h4>
+                🏆 Quick Actions
+            </h4>
+
+            <a href="/ai/" class="btn-trend d-block text-center mb-3">
+                Generate Content
+            </a>
+
+            <a href="/" class="btn-trend d-block text-center">
+                Back To Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}
