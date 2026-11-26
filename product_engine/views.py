@@ -87,10 +87,13 @@ def product_detail(request, pk):
         update_fields=["views"]
     )
 
+    latest_content = Content.objects.first()
+
     return render(
         request,
         "product_engine/detail.html",
         {
-            "product": product
+            "product": product,
+            "content": latest_content
         }
     )

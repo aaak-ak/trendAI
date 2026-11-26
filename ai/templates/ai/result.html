@@ -1,83 +1,67 @@
 {% extends "product_engine/base.html" %}
 
-{% block title %}
-AI Result
-{% endblock %}
+{% block title %} 
+AI Result 
+{% endblock%}
 
-{% block content %}
+ {% block content %}
 
 <div class="card-ai">
+  <h1>🤖 AI Results</h1>
 
-    <h1>
-        🤖 AI Results
-    </h1>
+  <p class="text-secondary">
+    Generated content for:
 
-    <p class="text-secondary">
+    <strong> {{ title }} </strong>
+  </p>
+</div>
 
-        Generated content for:
+<div class="card-ai">
+  <h3>📝 Product Description</h3>
 
-        <strong>
-            {{ title }}
-        </strong>
+  <p>{{ description }}</p>
+</div>
 
-    </p>
+<div class="card-ai">
+  <h3>⚡ Viral Hook</h3>
+
+  <p>{{ hook }}</p>
+</div>
+
+<div class="card-ai">
+  <h3>🏷️ Hashtags</h3>
+
+  <div>
+    {% for tag in hashtags %}
+
+    <span class="badge bg-primary me-2 mb-2"> {{ tag }} </span>
+
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card-ai">
+  <h3>🎬 TikTok Script</h3>
+
+  <pre
+style="
+white-space: pre-wrap;
+font-family: inherit;
+color: white;
+background: transparent;
+border: none;
+padding: 0;
+margin: 0;
+">
+
+{{ tiktok_script }}
+
+</pre>
 
 </div>
 
 <div class="card-ai">
-
-    <h3>
-        📝 Product Description
-    </h3>
-
-    <p>
-        {{ description }}
-    </p>
-
-</div>
-
-<div class="card-ai">
-
-    <h3>
-        ⚡ Viral Hook
-    </h3>
-
-    <p>
-        {{ hook }}
-    </p>
-
-</div>
-
-<div class="card-ai">
-
-    <h3>
-        🏷️ Hashtags
-    </h3>
-
-    <div>
-
-        {% for tag in hashtags %}
-
-            <span class="badge bg-primary me-2 mb-2">
-                {{ tag }}
-            </span>
-
-        {% endfor %}
-
-    </div>
-
-</div>
-
-<div class="card-ai">
-
-    <a
-        href="{% url 'ai:ai_generate' %}"
-        class="btn-trend">
-
-        Generate Again
-
-    </a>
-
+  <a href="{% url 'ai:ai_generate' %}" class="btn-trend"> Generate Again </a>
 </div>
 
 {% endblock %}

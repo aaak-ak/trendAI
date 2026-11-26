@@ -234,7 +234,7 @@ def generate_scripts(title: str, count: int = 3):
     try:
 
         prompt = f"""
-        Create {count} TikTok scripts for:
+        Create {count} TikTok marketing scripts for:
         {title}
         """
 
@@ -251,21 +251,55 @@ def generate_scripts(title: str, count: int = 3):
         if "Air Pump" in title:
 
             return [
-                "Low tire pressure? Plug in the air pump and inflate in minutes.",
-                "Every driver should keep this emergency gadget in the trunk.",
-                "A small tool that can save your entire road trip."
-            ]
+                """POV: Your tire pressure warning turns on.
+
+            No gas station nearby.
+
+            You grab this portable air pump.
+
+            Connect it.
+
+            Inflate your tire in minutes.
+
+            Every driver should keep one in the trunk."""
+        ]
 
         if "MagSafe" in title:
 
             return [
-                "Attach your iPhone instantly with MagSafe technology.",
-                "No more unstable phone holders.",
-                "Simple, strong and perfect for daily use."
+                """Your phone keeps falling from cheap holders.
+
+                This MagSafe mount locks instantly.
+
+                Simple.
+
+                Strong.
+
+                Perfect for everyday use."""
+            ]
+
+        if "LED" in title:
+
+            return [
+                """Want your car interior to look amazing?
+
+                Plug in this mini LED projector.
+
+                Instant starry sky effect.
+
+                Cheap.
+
+                Simple.
+
+                Viral."""
             ]
 
         return [
-            f"POV: You discovered {title} and wonder why you didn't buy it earlier.",
-            f"This is how {title} makes life easier.",
-            f"Here's why people are talking about {title}."
+            f"""POV:
+
+            You found {title}
+
+            Everyone is talking about it.
+
+            Maybe it's time to try it too."""
         ]

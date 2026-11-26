@@ -9,6 +9,7 @@ class AIContentAdmin(admin.ModelAdmin):
         "hook",             # хук
         "problem_solution", # опис проблеми/рішення
         "cta",              # заклик до дії
+        "tiktok_script",
         "hashtags",         # хештеги
         "trend",            # тренд, якщо є
         "created_at",       # дата створення

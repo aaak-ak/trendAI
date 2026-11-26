@@ -24,12 +24,13 @@ def dashboard(request):
         ctr = (analytics.clicks / analytics.views * 100) if analytics and analytics.views > 0 else 0
         clicks = analytics.clicks if analytics else 0
 
-        data.append({
-            "title": p.title,
-            "ctr": ctr,
-            "clicks": clicks,
-            "decision": score(p)
-        })
+    data.append({
+        "id": p.id,
+        "title": p.title,
+        "ctr": ctr,
+        "clicks": clicks,
+        "decision": score(p)
+    })
 
     # Підрахунок для summary
     summary = {

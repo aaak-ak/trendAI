@@ -8,4 +8,14 @@ class ContentSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Content
-        fields = ["id", "product", "hook", "problem_solution", "cta", "hashtags", "trend", "created_at"]
+        fields = [
+    "id",
+    "product",
+    "hook",
+    "problem_solution",
+    "cta",
+    "tiktok_script",
+    "hashtags",
+    "trend",
+    "created_at",
+]

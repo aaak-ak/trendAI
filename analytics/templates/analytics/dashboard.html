@@ -101,8 +101,20 @@ Analytics
                     <tr>
 
                         <td>
-                            {{ p.title }}
+
+                            <a
+                               href="/products/{{ p.id }}/"
+                               style="
+                               color:#22d3ee;
+                               text-decoration:none;
+                               font-weight:600;">
+
+                               {{ p.title }}
+
+                             </a>
+
                         </td>
+
 
                         <td>
                             {{ p.ctr }}%

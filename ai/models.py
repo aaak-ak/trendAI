@@ -9,7 +9,8 @@ class Content(models.Model):
     # Основні блоки AI‑контенту
     hook = models.TextField(blank=True, null=True)              # рекламний хук
     problem_solution = models.TextField(blank=True, null=True)  # опис проблеми та рішення
-    cta = models.TextField(blank=True, null=True)               # заклик до дії (Call To Action)
+    cta = models.TextField(blank=True, null=True)  
+    tiktok_script = models.TextField(blank=True, null=True)             # заклик до дії (Call To Action)
     hashtags = models.TextField(blank=True, null=True)          # список хештегів
 
     # Прив’язка до тренду (може бути пустою)
