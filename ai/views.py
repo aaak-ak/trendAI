@@ -20,6 +20,20 @@ def ai_generate(request):
 
         hashtags = generate_hashtags(title)
 
+        product = Product.objects.filter(
+            title=title
+        ).first()
+
+        if product:
+
+            Content.objects.create(
+                product=product,
+                hook=hook,
+                problem_solution=description,
+                cta="Click the affiliate link to learn more.",
+                hashtags=" ".join(hashtags)
+            )
+
         return render(
             request,
             "ai/result.html",
