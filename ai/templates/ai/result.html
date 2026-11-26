@@ -54,9 +54,17 @@ AI Result
         🏷️ Hashtags
     </h3>
 
-    <p>
-        {{ hashtags }}
-    </p>
+    <div>
+
+        {% for tag in hashtags %}
+
+            <span class="badge bg-primary me-2 mb-2">
+                {{ tag }}
+            </span>
+
+        {% endfor %}
+
+    </div>
 
 </div>
 

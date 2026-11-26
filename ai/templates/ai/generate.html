@@ -9,16 +9,14 @@ AI Generator
 <div class="card-ai">
 
     <h1 style="
-    font-size:56px;
-    font-weight:900;">
+        font-size:56px;
+        font-weight:900;">
         🤖 AI Content Generator
     </h1>
 
     <p class="text-secondary">
-
         Generate descriptions, hooks, hashtags
         and product content automatically.
-
     </p>
 
 </div>
@@ -30,18 +28,23 @@ AI Generator
         {% csrf_token %}
 
         <label class="mb-3">
-
-            Product Name
-
+            Select Product
         </label>
 
-        <input
-            type="text"
-            id="title"
+        <select
             name="title"
             class="form-control"
-            placeholder="Wireless Earbuds"
             required>
+
+            {% for product in products %}
+
+                <option value="{{ product.title }}">
+                    {{ product.title }}
+                </option>
+
+            {% endfor %}
+
+        </select>
 
         <button
             type="submit"
@@ -56,3 +59,4 @@ AI Generator
 </div>
 
 {% endblock %}
+
